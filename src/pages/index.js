@@ -1,27 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Note from '../components/note';
 import Form from '../components/form';
 import './index.css';
-import IdentityModal, { useIdentityContext } from 'react-netlify-identity-widget';
-import "react-netlify-identity-widget";
+import IdentityModal, { useIdentityContext } from "react-netlify-identity-widget"
+import "react-netlify-identity-widget/styles.css"
 
 export default () => {
-    const [status, setStatus] = useState('loading');
+    const [status, setStatus] = useState("loading");
     const [notes, setNotes] = useState(null);
     useEffect(() => {
         let canceled = false;
         if (status != "loading") return;
         axios("/api/get-all-notes").then(result => {
             if (canceled === true) return;
+
             if (result.status != 200) {
-                console.log("Error loading notes");
-                console.log(result);
+                console.error("Error loading notes");
+                console.error(result);
                 return;
             }
             setNotes(result.data.notes);
-            setStatus("loaded")
+            setStatus("loaded");
         });
+
         return () => {
             canceled = true;
         };
@@ -29,10 +31,11 @@ export default () => {
 
     const reloadNotes = () => setStatus('loading');
 
-    const identity = useIdentityContext();
-    const [dialog, setDialog] = React.useState(false);
-    const name = (identity && identity.user && identity.user.user_metadata && identity.user.user_metadata.full_name ) || "Non";
-    const isLoggedIn = identity && identity.isLoggedIn;
+    const identity = useIdentityContext()
+    const [dialog, setDialog] = React.useState(false)
+    const name =
+        (identity && identity.user && identity.user.user_metadata && identity.user.user_metadata.full_name) || "NoName"
+    const isLoggedIn = identity && identity.isLoggedIn
 
     return (
         <main>
@@ -42,25 +45,25 @@ export default () => {
                     <button className="login-btn" onClick={() => setDialog(true)}>
                         {isLoggedIn ? `Hello ${name}, Log out here!` : "LOG IN"}
                     </button>
-                    <Form reloadNotes={reloadNotes}/>
+                    <Form reloadNotes={reloadNotes} />
                     {notes ? (
                         <ul>
                             {notes.map(note => (
                                 <li key={note._id}>
-                                    <Note note={note} reloadNotes={reloadNotes}/>
+                                    <Note note={note} reloadNotes={reloadNotes} />
                                 </li>
                             ))}
                         </ul>
                     ) : (
-                        <p>Loading notes...</p>              
-                    )}
+                            <p>Loading notes...</p>
+                        )}
                 </>
             ) : (
-                <button className="login-btn" onClick={() => setDialog(true)}>
-                    {isLoggedIn ? `Hello ${name}, Log out here!` : "LOG IN"}
-                </button>
-            )}
+                    <button className="login-btn" onClick={() => setDialog(true)}>
+                        {isLoggedIn ? `Hello ${name}, Log out here!` : "LOG IN"}
+                    </button>
+                )}
             <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
         </main>
-    )
-}
+    );
+};
