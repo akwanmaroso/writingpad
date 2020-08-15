@@ -16,7 +16,7 @@
     "@reach/visually-hidden": "^0.10.4",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
-    "gatsby": "^2.21.24",
+    "gatsby": "^2.24.47",
     "gatsby-plugin-netlify-identity": "0.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.0",
