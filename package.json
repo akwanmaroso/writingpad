@@ -14,7 +14,7 @@
     "@reach/dialog": "^0.10.5",
     "@reach/tabs": "^0.10.5",
     "@reach/visually-hidden": "^0.10.4",
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.47",
     "gatsby-plugin-netlify-identity": "0.0.3",
