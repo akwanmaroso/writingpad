@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@reach/dialog": "^0.11.2",
+    "@reach/dialog": "^0.14.0",
     "@reach/tabs": "^0.11.2",
     "@reach/visually-hidden": "^0.11.1",
     "axios": "^0.20.0",
