@@ -19,7 +19,7 @@
     "gatsby": "^2.32.12",
     "gatsby-plugin-netlify-identity": "0.0.3",
     "react": "^16.14.0",
-    "react-dom": "^16.13.1",
+    "react-dom": "^16.14.0",
     "react-netlify-identity-widget": "^0.2.7"
   }
 }
